@@ -8,7 +8,7 @@ class commodity {
     init() {
         let _this = this;
         ajax({
-            url: 'http://localhost/php.php/nubia/php/nubialist.php',
+            url: 'http://10.31.161.202/nubia/php/nubialist.php',
             dataType: 'json'
         }).then(function(date) {
             console.log(date);
@@ -115,3 +115,20 @@ class code {
     }
 }
 new code().init();
+
+
+
+// 实现懒加载
+class loading {
+
+    constructor() {
+
+    }
+
+    init() {
+
+    }
+
+
+}
+new loading().init();

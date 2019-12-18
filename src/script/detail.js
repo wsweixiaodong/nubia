@@ -14,13 +14,12 @@ class detail {
     init() {
         let _this = this;
         ajax({
-            url: 'http://localhost/php.php/nubia/php/detail.php',
+            url: 'http://10.31.161.202/nubia/php/detail.php',
             data: {
                 picsid: this.sid
             },
             dataType: 'json'
         }).then(function(data) {
-            console.log(data);
             _this.render(data)
         });
     }
@@ -30,14 +29,33 @@ class detail {
         this.loadpcp.innerHTML = data.price;
         let picarr = data.imgurls.split(',');
         let strhtml = '';
-        console.log(picarr);
         for (let value of picarr) {
             strhtml += `
                     <li><img src="${value}"></li>
                     `;
         }
-        this.list.innerHTML = strhtml
+        this.list.innerHTML = strhtml;
+        this.thumbnail();
     }
+
+
+    //点击底部图片 显示 用事件委托
+    thumbnail() {
+        let _this = this;
+        this.list.onclick = function(ev) {
+            var ev = ev || window.event;
+            let ele = ev.target || ev.srcElement;
+            if (ele.nodeName === 'IMG') {
+                let imgurls = ele.src;
+                _this.pic.src = imgurls;
+                _this.bpic.src = imgurls;
+
+            }
+        }
+    }
+
+
+
 }
 new detail().init();
 
